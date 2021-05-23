@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route, Redirect, NavLink } from "react-router-dom";
 
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
@@ -9,6 +9,21 @@ function App() {
   Define state variables for 
   contacts and appointments 
   */
+ const [contacts, setContacts] = useState([
+   {
+    name: 'John Doe',
+    phoneNumber: 4568745645,
+    email: 'abc@xyz.com',
+   }
+ ]);
+ const [appointments, setAppointments] = useState([
+   {
+     title: 'Sample Appointment',
+     contact: 'John Doe',
+     date: '23-05-2021',
+     time: '22:27'
+   }
+ ])
 
   const ROUTES = {
     CONTACTS: "/contacts",
@@ -19,6 +34,14 @@ function App() {
   Implement functions to add data to
   contacts and appointments
   */
+
+  const addContact = (contacts) => {
+    setContacts((prev) => [contacts, ...prev])
+  }
+
+  const addAppointment = (appointments) => {
+    setAppointments((prev) => [appointments, ...prev])
+  }
 
   return (
     <>
@@ -37,11 +60,11 @@ function App() {
           </Route>
           <Route path={ROUTES.CONTACTS}>
              {/* Add props to ContactsPage */}
-            <ContactsPage />
+            <ContactsPage contacts={contacts} handleChange={addContact}/>
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             {/* Add props to AppointmentsPage */}
-            <AppointmentsPage />
+            <AppointmentsPage appointments={appointments} handleChange={addAppointment} />
           </Route>
         </Switch>
       </main>
