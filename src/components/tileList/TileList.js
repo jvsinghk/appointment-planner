@@ -1,11 +1,11 @@
 import React from "react";
 import { Tile } from "../tile/Tile";
 
-export const TileList = ({tiles}) => {
+export const TileList = ({tilesObjArr}) => {
 
   return (
     <div>
-      {tiles.map((value, index) => {
+      {tilesObjArr.map( (value, index) => {
         return <Tile value={value}  key={index} />
       })}
     </div>
