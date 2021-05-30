@@ -42,7 +42,7 @@ export const ContactForm = ({
         required
       />
 
-      <button type='submit'>Submit</button>
+      <input type='submit' />
     </form>
   );
 };
