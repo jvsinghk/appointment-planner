@@ -19,30 +19,35 @@ export const ContactForm = ({
         value={name} 
         onChange={({target}) => (setName(target.value))}
         required
+        placeholder="Contact Name"
       />
 
       <label for='phone'>Phone:</label>
       <input 
-        id='number' 
+        id='tel' 
         className='phone'
+        name='phone'
         type='tel' 
         value={phone} 
-        pattern='^[6-9][0-9]{9}$'
+        pattern="[1-9][0-9]{2}-[1-9][0-9]{2}-[0-9]{4}"
         onChange={({target}) => (setPhone(target.value))}
         required
+        placeholder="Contact Phone (###-###-####)"
       />
 
       <label for='email'>Email:</label>
       <input 
         id='email'
-        className='email' 
+        className='email'
+        name='email' 
         type='email' 
         value={email}
         onChange={({target}) => (setEmail(target.value))} 
         required
+        placeholder="Contact Email"
       />
 
-      <input type='submit' />
+      <input type='submit' value='Add Contact' />
     </form>
   );
 };

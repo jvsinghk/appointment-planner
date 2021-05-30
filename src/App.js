@@ -23,15 +23,33 @@ function App() {
   */
 
   const addContact = (name, phone, email) => {
-    setContacts((prev) => [...prev, {name, phone, email}])
-  }
+    setContacts([
+      ...contacts,
+      {
+        name: name, 
+        phone: phone, 
+        email: email,
+      },
+    ]);
+  };
 
   const addAppointment = (title, contact, date, time) => {
-    setAppointments((prev) => [...prev, {title, contact, date, time}])
-  }
+    setAppointments([
+      ...appointments, 
+      {
+        title: title, 
+        contact: contact, 
+        date: date, 
+        time: time,
+      },
+    ]);
+  };
 
   return (
     <>
+      <header>
+        <h1>Appointment Planner</h1>
+      </header>
       <nav>
         <NavLink to={ROUTES.CONTACTS} activeClassName="active">
           Contacts
@@ -46,12 +64,17 @@ function App() {
             <Redirect to={ROUTES.CONTACTS} />
           </Route>
           <Route path={ROUTES.CONTACTS}>
-             {/* Add props to ContactsPage */}
-            <ContactsPage contacts={contacts} addContact={addContact}/>
+            <ContactsPage 
+            contacts={contacts} 
+            addContact={addContact}
+            />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
-            {/* Add props to AppointmentsPage */}
-            <AppointmentsPage appointments={appointments} addAppointment={addAppointment} contacts={contacts} />
+            <AppointmentsPage 
+            appointments={appointments} 
+            addAppointment={addAppointment} 
+            contacts={contacts} 
+            />
           </Route>
         </Switch>
       </main>
